@@ -5,6 +5,7 @@ import com.taskmanager.task_manager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -21,5 +22,9 @@ public class TaskService {
 
     public Task createTask(Task task) {
         return taskRepository.save(task);
+    }
+
+    public Optional<Task> getTaskById(Long id) {
+        return taskRepository.findById(id);
     }
 }
