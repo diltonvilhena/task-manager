@@ -41,4 +41,14 @@ public class TaskController {
     public Task createTask(@RequestBody Task task) {
         return taskService.createTask(task);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+        if (taskService.getTaskById(id).isPresent()) {
+            taskService.deleteTask(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
